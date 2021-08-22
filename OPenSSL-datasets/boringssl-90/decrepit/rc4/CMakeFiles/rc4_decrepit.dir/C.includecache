@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/OPenSSL-datasets/boringssl-90/decrepit/rc4/rc4_decrepit.c
+openssl/rc4.h
+-
+
+decrepit/../include/openssl/base.h
+stddef.h
+-
+stdint.h
+-
+sys/types.h
+-
+stdio.h
+-
+openssl/opensslconf.h
+-
+boringssl_prefix_symbols.h
+-
+memory
+-
+memory
+-
+
+decrepit/../include/openssl/opensslconf.h
+
+decrepit/../include/openssl/rc4.h
+openssl/base.h
+-
+

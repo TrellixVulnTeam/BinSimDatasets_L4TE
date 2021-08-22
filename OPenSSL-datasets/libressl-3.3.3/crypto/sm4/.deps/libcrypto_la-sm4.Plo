@@ -1,0 +1,33 @@
+sm4/libcrypto_la-sm4.lo: sm4/sm4.c ../include/openssl/opensslconf.h \
+  ../include/openssl/opensslfeatures.h ../include/openssl/sm4.h \
+  /usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include/stdint.h \
+  /usr/include/stdint.h /usr/include/features.h \
+  /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h
+
+../include/openssl/opensslconf.h:
+
+../include/openssl/opensslfeatures.h:
+
+../include/openssl/sm4.h:
+
+/usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/features.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:

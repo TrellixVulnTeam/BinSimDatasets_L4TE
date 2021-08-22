@@ -1,0 +1,10 @@
+*.o
+*.so*
+*.dll
+*.exe
+*.depend
+*.po
+*.a
+*.cat[1-9]
+*.pic_o
+obj/

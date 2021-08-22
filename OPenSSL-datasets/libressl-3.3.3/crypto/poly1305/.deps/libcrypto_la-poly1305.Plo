@@ -1,0 +1,15 @@
+poly1305/libcrypto_la-poly1305.lo: poly1305/poly1305.c \
+  ../include/openssl/poly1305.h ../include/openssl/opensslconf.h \
+  ../include/openssl/opensslfeatures.h \
+  /usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include/stddef.h \
+  poly1305/poly1305-donna.c
+
+../include/openssl/poly1305.h:
+
+../include/openssl/opensslconf.h:
+
+../include/openssl/opensslfeatures.h:
+
+/usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include/stddef.h:
+
+poly1305/poly1305-donna.c:

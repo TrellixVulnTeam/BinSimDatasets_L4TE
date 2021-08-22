@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/OPenSSL-datasets/boringssl-90/crypto/aes/aes-x86_64.S
+
+/root/OPenSSL-datasets/boringssl-90/crypto/aes/aesni-x86_64.S
+
+/root/OPenSSL-datasets/boringssl-90/crypto/aes/bsaes-x86_64.S
+
+/root/OPenSSL-datasets/boringssl-90/crypto/aes/vpaes-x86_64.S
+

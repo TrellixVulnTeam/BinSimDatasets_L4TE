@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/OPenSSL-datasets/boringssl-90/crypto/sha/sha1-x86_64.S
+
+/root/OPenSSL-datasets/boringssl-90/crypto/sha/sha256-x86_64.S
+
+/root/OPenSSL-datasets/boringssl-90/crypto/sha/sha512-x86_64.S
+

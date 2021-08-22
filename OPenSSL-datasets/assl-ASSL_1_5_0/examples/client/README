@@ -1,0 +1,41 @@
+Make sure CA has been created first
+Then create the client cert like:
+$ sh create_client
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) []:US
+State or Province Name (full name) []:Texas
+Locality Name (eg, city) []:Round Rock
+Organization Name (eg, company) []:assl
+Organizational Unit Name (eg, section) []:Client
+Common Name (eg, fully qualified host name) []:
+Email Address []:marco@peereboom.us
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+=============================================================================
+Sign the cert:
+$ sh sign_client
+Signature ok
+subject=/C=US/ST=Texas/L=Round Rock/O=assl/OU=Client/emailAddress=marco@peereboom.us
+Getting CA Private Key
+=============================================================================
+
+Run the client code from this directory like:
+
+-- openbsd --
+LD_LIBRARY_PATH=../../obj/ blocking/obj/bclient
+LD_LIBRARY_PATH=../../obj/ nonblocking/obj/nbclient
+
+-- linux --
+LD_LIBRARY_PATH=../../ blocking/bclient
+LD_LIBRARY_PATH=../../ nonblocking/nbclient
+
+for blocking and non-blocking versions respectively.

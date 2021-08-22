@@ -1,0 +1,5 @@
+#/bin/sh
+mkdir -p client/private
+chmod 700 client/private
+openssl ecparam -genkey -name secp521r1 -out client/private/client.key
+openssl req -new -days 7300 -key client/private/client.key -out client/client.csr
