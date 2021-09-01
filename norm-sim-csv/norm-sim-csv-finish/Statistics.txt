@@ -4,4 +4,5 @@ libressl-boringssl	156	110	266
 libressl-gmssl	370	248	618
 openssl-boringssl	144	121	265
 openssl-gmssl	402	285	687
-总计	1203	830	2033
+openssl-libressl	474	315	789
+总计	1677	1145	2822

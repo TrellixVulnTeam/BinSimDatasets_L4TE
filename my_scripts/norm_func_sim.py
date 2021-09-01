@@ -5,7 +5,7 @@ import math
 import numpy as np
 from sklearn.metrics.pairwise import *
 from tqdm import tqdm
-
+import argparse
 """
 统计函数及其包含的指令集
 :param file_name: csv文件的名字 
@@ -86,7 +86,7 @@ def get_func_instr_times(file_name):
 
 
 
-def get_func_instr_times_old(file_name):
+def get_func_instr_times_norm(file_name):
     func_instr_dict = dict()
 
     with open(file_name, "r") as f:
@@ -110,7 +110,7 @@ def get_func_instr_times_old(file_name):
             func_name = row["location"].split("/")[-1].split(".")[0]
 
             func_name += "+"
-            func_name += file_name
+            func_name += file_name.split("+")[-1]
     
             ## 向量简单相加
             if func_instr_dict.has_key(func_name):
@@ -233,6 +233,7 @@ def caculate_sim_one_hot(func_1, func_1_inst, func_2, func_2_inst):
     return key_str, sim_value
 
 def caculate_sim_times(func_1, func_1_inst_times, func_2, func_2_inst_times):
+    # print func_1_inst_times
     tmp_list = list(set(list(func_1_inst_times.keys())).union(set(list(func_2_inst_times.keys()))))
     vector_1 = [0]*len(tmp_list)
     vector_2 = [0]*len(tmp_list)
@@ -248,6 +249,7 @@ def caculate_sim_times(func_1, func_1_inst_times, func_2, func_2_inst_times):
     # print vector_2
 
     key_str = str(func_1.split("+")[1]+"_"+func_2.split("+")[1]+"+"+func_1.split("+")[0]+"&"+func_2.split("+")[0]+" sim: ")
+    # print key_str
     sim_value = cos_sim(vector_1, vector_2)
 
     return key_str, sim_value
@@ -255,10 +257,10 @@ def caculate_sim_times(func_1, func_1_inst_times, func_2, func_2_inst_times):
 
 
 def norm_sim_times(f1_path, f2_path, new_csv, target_list):
-    func_1_insts = get_func_instr_times_old(f1_path)
+    func_1_insts = get_func_instr_times_norm(f1_path)
     print "[*] func_1_insts's length: ", len(func_1_insts)
 
-    func_2_insts = get_func_instr_times_old(f2_path)
+    func_2_insts = get_func_instr_times_norm(f2_path)
     print "[*] func_2_insts's length: ", len(func_2_insts)
 
     func_sim_times = dict()
@@ -300,20 +302,27 @@ def norm_sim_times(f1_path, f2_path, new_csv, target_list):
             tmp_dict["count"] = item[1]
             w.writerow(tmp_dict)
 
-def sim_times_old(f1_path, f2_path, new_csv, target_list):
-    func_1_insts = get_func_instr_times_old(f1_path)
+def get_normsim_csv(f1_path, f2_path, new_csv, lib1, lib2, sim_value, inst_len):
+    func_1_insts = get_func_instr_times_norm(f1_path)
     print "[*] func_1_insts's length: ", len(func_1_insts)
+    # for k,v in func_1_insts.items():
+    #     print k,v
+    # exit(0)
 
-    func_2_insts = get_func_instr_times_old(f2_path)
+    func_2_insts = get_func_instr_times_norm(f2_path)
     print "[*] func_2_insts's length: ", len(func_2_insts)
+    # for k,v in func_2_insts.items():
+    #     print k
+    # exit(0)
 
     cnt = 0
     func_sim_times = dict()
     pbar = tqdm(total=(len(func_1_insts)*len(func_2_insts)))
     for k1,v1 in func_1_insts.items():
         for k2,v2 in func_2_insts.items():
-            if len(v1) > 0 and len(v2) > 0:
+            if len(v1) > int(inst_len) and len(v2) > int(inst_len):
                 key, value = caculate_sim_times(k1, v1, k2, v2)
+                # print value
                 func_sim_times[key] = value
             pbar.update()
     pbar.close()
@@ -322,8 +331,8 @@ def sim_times_old(f1_path, f2_path, new_csv, target_list):
     
     head = list()
     head.append("file_name")
-    head.append(f1_path.split(".")[0])
-    head.append(f2_path.split(".")[0])
+    head.append(lib1)
+    head.append(lib2)
     head.append("sim_value")
 
     with open(new_csv, 'w') as f:
@@ -332,10 +341,10 @@ def sim_times_old(f1_path, f2_path, new_csv, target_list):
 
         for item in ans:
             tmp_dict = dict()
-            if item[1] > 0.1:
+            if item[1] > float(sim_value):
                 tmp_dict["file_name"] = item[0].split("+")[0]
-                tmp_dict[f1_path.split(".")[0]] = item[0].split("&")[0].split("_ODD_")[1]
-                tmp_dict[f2_path.split(".")[0]] = item[0].split("&")[1].split("_ODD_")[1].split(" sim")[0]
+                tmp_dict[lib1] = item[0].split("&")[0].split("_ODD_")[1]
+                tmp_dict[lib2] = item[0].split("&")[1].split("_ODD_")[1].split(" sim")[0]
                 tmp_dict["sim_value"] = item[1]
                 w.writerow(tmp_dict)
 
@@ -390,8 +399,21 @@ def pre_process(file_name):
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-csv1", "--csv1", help="first file of csv")
+    parser.add_argument("-csv2", "--csv2", help="second file of csv")
+    parser.add_argument("-s", "--store", help="final csv")
+    parser.add_argument("-lib1", "--lib1", help="first lib of csv")
+    parser.add_argument("-lib2", "--lib2", help="second lib of csv")
+    parser.add_argument("-sim", "--sim_value", help="sim value to select function pairs")
+    parser.add_argument("-len", "--inst_len", help="inst length of function")
 
-    target_list = pre_process("/root/FICS/analysis_dataset/afs_g2v/413_norm+4009_file_name_openssl_libressl_3.3.3_times.csv")
+
+    args = parser.parse_args()
+
+    get_normsim_csv(args.csv1, args.csv2, args.store, args.lib1, args.lib2, args.sim_value, args.inst_len)
+
+    # target_list = pre_process("/root/FICS/analysis_dataset/afs_g2v/413_norm+4009_file_name_openssl_libressl_3.3.3_times.csv")
     # print len(target_list)
     # exit(0)
 
@@ -402,7 +424,7 @@ if __name__ == "__main__":
     # sim_times_old("101ftmp.csv", "101gtmp.csv", "norm_+40+80openssl_1010f_libressl_333.csv", target_list)
     # sim_times_old("openssl_101f.csv", "libressl_3.3.3.csv", "norm_+40+80openssl_1010f_libressl_333.csv", target_list)
 
-    sim_times_old("_ODD_whole1_afs_NN.csv", "_ODD_whole2_afs_NN.csv", "11.csv", target_list)
+    # sim_times_old("_ODD_whole1_afs_NN.csv", "_ODD_whole2_afs_NN.csv", "11.csv", target_list)
 
     # sim_times("/root/FICS/analysis_dataset/afs_g2v/tmp1.csv", 
     #         "/root/FICS/analysis_dataset/afs_g2v/tmp2.csv",
