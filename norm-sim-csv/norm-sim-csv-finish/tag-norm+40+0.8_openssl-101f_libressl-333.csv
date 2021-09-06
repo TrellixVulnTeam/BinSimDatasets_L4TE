@@ -1,4 +1,4 @@
-file_name,openssl_101f,libressl_3,sim_value,ABCDE,�Ƿ�һ��
+file_name,openssl_101f,libressl_3,sim_value,ABCDE,ÊÇ·ñÒ»ÖÂ
 v3_sxnet.c_x509_sxnet.c,SXNET_add_id_INTEGER,SXNET_add_id_INTEGER,0.999958005,C,1
 rsa_depr.c_rsa_depr.c,RSA_generate_key,RSA_generate_key,0.999872383,B,1
 ts_rsp_sign.c_ts_rsp_sign.c,TS_RESP_sign,TS_RESP_sign,0.999864762,C,1
@@ -653,10 +653,10 @@ bn_nist.c_bn_nist.c,BN_nist_mod_256,BN_nist_mod_224,0.845897814,E,0
 ocsp.c_ocsp.c,query_responder,query_responder,0.845678712,E,1
 ec2_oct.c_ecp_smpl.c,ec_GF2m_simple_oct2point,ec_GFp_simple_point_get_affine_coordinates,0.845259892,E,0
 cfb64ede.c_ofb64enc.c,DES_ede3_cfb64_encrypt,DES_ofb64_encrypt,0.845171319,E,0
-rsa_eay.c_rsa_eay.c,RSA_eay_public_decrypt,RSA_eay_public_encrypt,0.844086168,,0
+rsa_eay.c_rsa_eay.c,RSA_eay_public_decrypt,RSA_eay_public_encrypt,0.844086168,E,0
 s_client.c_s_client.c,print_stuff,print_stuff,0.84398479,B,1
 a_bytes.c_a_int.c,d2i_ASN1_type_bytes,c2i_ASN1_INTEGER,0.842420081,E,0
-ex_data.c_ex_data.c,int_dup_ex_data,int_free_ex_data,0.842268731,,0
+ex_data.c_ex_data.c,int_dup_ex_data,int_free_ex_data,0.842268731,E,0
 bn_gf2m.c_bn_gf2m.c,BN_GF2m_mod_arr,BN_GF2m_mod_arr,0.842035197,A,1
 d1_srvr.c_ssl_srvr.c,dtls1_send_newsession_ticket,ssl3_send_newsession_ticket,0.841947063,E,0
 bn_exp.c_bn_exp2.c,BN_mod_exp_mont_word,BN_mod_exp2_mont,0.840611153,E,0
@@ -673,7 +673,7 @@ ec2_smpl.c_ecp_smpl.c,ec_GF2m_simple_add,ec_GFp_simple_add,0.838279438,E,0
 d1_pkt.c_d1_pkt.c,dtls1_read_bytes,dtls1_read_bytes,0.837974274,E,1
 apps.c_apps.c,load_pubkey,load_pubkey,0.837888355,D,1
 bn_nist.c_bn_nist.c,BN_nist_mod_256,BN_nist_mod_192,0.837805894,E,0
-ex_data.c_ex_data.c,int_free_ex_data,int_dup_ex_data,0.837443539,,0
+ex_data.c_ex_data.c,int_free_ex_data,int_dup_ex_data,0.837443539,E,0
 d1_both.c_d1_both.c,dtls1_do_write,dtls1_do_write,0.837221107,E,1
 tasn_fre.c_tasn_fre.c,asn1_item_combine_free,asn1_item_combine_free,0.837086583,E,1
 cfb64enc.c_ofb64enc.c,DES_cfb64_encrypt,DES_ofb64_encrypt,0.837081573,E,0
@@ -706,7 +706,7 @@ bn_nist.c_bn_nist.c,BN_nist_mod_384,BN_nist_mod_192,0.825641591,E,0
 ecp_smpl.c_ec2_oct.c,ec_GFp_simple_point_get_affine_coordinates,ec_GF2m_simple_oct2point,0.825437037,E,0
 des_enc.c_cfb64ede.c,DES_ede3_cbc_encrypt,DES_ede3_cfb64_encrypt,0.825298677,E,0
 gcm128.c_gcm128.c,CRYPTO_gcm128_setiv,CRYPTO_gcm128_decrypt_ctr32,0.824880493,E,0
-a_bytes.c_a_int.c,d2i_ASN1_type_bytes,d2i_ASN1_UINTEGER,0.824815034,,0
+a_bytes.c_a_int.c,d2i_ASN1_type_bytes,d2i_ASN1_UINTEGER,0.824815034,E,0
 ecp_smpl.c_ecp_oct.c,ec_GFp_simple_set_Jprojective_coordinates_GFp,ec_GFp_simple_point2oct,0.82462747,E,0
 d1_clnt.c_ssl_clnt.c,dtls1_connect,ssl3_connect,0.824561076,E,0
 ofb64enc.c_cfb64ede.c,DES_ofb64_encrypt,DES_ede3_cfb64_encrypt,0.823607639,E,0
